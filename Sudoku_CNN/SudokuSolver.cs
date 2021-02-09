@@ -10,7 +10,6 @@ using Keras.Models;
 using Python.Runtime;
 using Numpy;
 
-
 namespace Sudoku_CNN
 {
 
@@ -18,7 +17,7 @@ namespace Sudoku_CNN
 	class SudokuSolver : ISudokuSolver
 	{
 
-		private const string modelPath = @"C:\Users\NGUEND\Desktop\ECE-2021-FIN-E-Ing4-Finance-Gr04-IA1\CNN_solver\Models\sudoku.model";
+		private static string modelPath =Path.Combine(Environment.CurrentDirectory, @"Models\sudoku.model");
 		private static BaseModel model = NeuralNetHelper.LoadModel(modelPath);
 
 
@@ -49,11 +48,20 @@ namespace Sudoku_CNN
 
 			static NeuralNetHelper()
 			{
-				var distributionPath = @"C:\Users\NGUEND\AppData\Local\Programs\Python\Python37";
-				string path = $@"{distributionPath};" + Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Machine);
-				Environment.SetEnvironmentVariable("PATH", path, EnvironmentVariableTarget.Process);
-				PythonEngine.PythonHome = distributionPath;
+				//var distributionPath = @"C:\Users\NGUEND\AppData\Local\Programs\Python\Python37";
+				//string path = $@"{distributionPath};" + Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Machine);
+				//Environment.SetEnvironmentVariable("PATH", path, EnvironmentVariableTarget.Process);
+				//PythonEngine.PythonHome = distributionPath;
 				Setup.UseTfKeras();
+				//Console.WriteLine($" Version : {PythonEngine.PythonPath}");
+				//Console.WriteLine($" Path : {PythonEngine.PythonPath}");
+				//Console.WriteLine($" Build : {PythonEngine.BuildInfo}");
+				//Console.WriteLine($" Compiler : {PythonEngine.Compiler}");
+				//Console.WriteLine($" Copyright : {PythonEngine.Copyright}");
+				//Console.WriteLine($" IsInitialized : {PythonEngine.IsInitialized}");
+				//Console.WriteLine($" Platform : {PythonEngine.Platform}");
+				//Console.WriteLine($" ProgramName : {PythonEngine.ProgramName}");
+				
 			}
 
 			public static BaseModel LoadModel(string strpath)
